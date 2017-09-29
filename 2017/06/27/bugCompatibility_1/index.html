@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://github.com/Gabrielkaliboy/images/blob/master/_posts/bugCompatibility_1/1.png?raw=true">
 <meta property="og:image" content="https://github.com/Gabrielkaliboy/images/blob/master/_posts/bugCompatibility_1/1.gif?raw=true">
 <meta property="og:image" content="https://github.com/Gabrielkaliboy/images/blob/master/_posts/bugCompatibility_1/2.png?raw=true">
-<meta property="og:updated_time" content="2017-08-15T01:37:38.649Z">
+<meta property="og:updated_time" content="2017-09-29T13:35:14.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端开发过程中的bug以及兼容性记录（一）">
 <meta name="twitter:description" content="前端开发过程中的bug以及兼容性记录（一）">
@@ -216,13 +216,13 @@
 <p>如果你需要兼容IE9或者IE8，这个标签最好写上，如果只要求最新，比如兼容到IE11或者edge，那可以把它剔除</p>
 <p><code>X-UA-Compatible</code>这个meta标签允许开发者设置浏览器以哪个版本的IE来进行渲染 </p>
 <p>根据Microsoft的文档说明，这个标签最好是放在header的最顶部，IE浏览器在遇到这个标签的时候，会以最新版本的IE(客户电脑上所带的最新版IE)去渲染HTML。这会导致性能问题，因为浏览器是重新去渲染HTML</p>
-<h3 id="9-jQuery-1-9-最后支持-IE-6-7-8-的版本"><a href="#9-jQuery-1-9-最后支持-IE-6-7-8-的版本" class="headerlink" title="9. jQuery 1.9 最后支持 IE 6/7/8 的版本"></a>9. jQuery 1.9 最后支持 IE 6/7/8 的版本</h3><h3 id="10-IE8-缺少标识符、字符串或数字"><a href="#10-IE8-缺少标识符、字符串或数字" class="headerlink" title="10.IE8 缺少标识符、字符串或数字"></a>10.IE8 缺少标识符、字符串或数字</h3><p><img src="https://github.com/Gabrielkaliboy/images/blob/master/_posts/bugCompatibility_1/2.png?raw=true" alt=""></p>
-<p>IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028: 缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;  </div><div class="line">    x: <span class="number">1</span>,  </div><div class="line">    y: <span class="number">2</span>,  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="9-jQuery-1-9-最后支持-IE-6-7-8-的版本"><a href="#9-jQuery-1-9-最后支持-IE-6-7-8-的版本" class="headerlink" title="9. jQuery 1.9 最后支持 IE 6/7/8 的版本"></a>9. jQuery 1.9 最后支持 IE 6/7/8 的版本</h3><h3 id="10-IE8-缺少标识符、字符串或数字、高版本直接报80020101"><a href="#10-IE8-缺少标识符、字符串或数字、高版本直接报80020101" class="headerlink" title="10.IE8 缺少标识符、字符串或数字、高版本直接报80020101"></a>10.IE8 缺少标识符、字符串或数字、高版本直接报80020101</h3><p>部分资料：<br><a href="https://stackoverflow.com/questions/10903989/could-not-complete-the-operation-due-to-error-80020101-ie" target="_blank" rel="external">https://stackoverflow.com/questions/10903989/could-not-complete-the-operation-due-to-error-80020101-ie</a></p>
+<p><a href="https://stackoverflow.com/questions/4918969/ajax-request-problem-error-80020101/10275316#10275316" target="_blank" rel="external">https://stackoverflow.com/questions/4918969/ajax-request-problem-error-80020101/10275316#10275316</a></p>
+<p><img src="https://github.com/Gabrielkaliboy/images/blob/master/_posts/bugCompatibility_1/2.png?raw=true" alt=""></p>
+<h4 id="10-1-IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028-缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如："><a href="#10-1-IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028-缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如：" class="headerlink" title="10.1 IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028: 缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如："></a>10.1 IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028: 缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;  </div><div class="line">    x: <span class="number">1</span>,  </div><div class="line">    y: <span class="number">2</span>,  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>y:2后面多了个逗号，这在Firefox或者chrome浏览器及新的IE浏览器都正常，但是IE8以下浏览器是会报错的。直接去掉就可以</p>
-<p><strong>还有一种情况</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tool:&#123;  </div><div class="line">    <span class="keyword">const</span>:&#123;  </div><div class="line">        phone:XXXXXX  </div><div class="line">    &#125;  </div><div class="line">     &#125;</div></pre></td></tr></table></figure></p>
-<p>问题出在这行代码上，IE8及以下浏览器，不能用const作为json的key</p>
-</the>
+<h4 id="10-2-IE8及以下浏览器，不能用const作为json的key"><a href="#10-2-IE8及以下浏览器，不能用const作为json的key" class="headerlink" title="10.2 IE8及以下浏览器，不能用const作为json的key"></a>10.2 IE8及以下浏览器，不能用const作为json的key</h4><p><strong>还有一种情况</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tool:&#123;  </div><div class="line">    <span class="keyword">const</span>:&#123;  </div><div class="line">        phone:XXXXXX  </div><div class="line">    &#125;  </div><div class="line">     &#125;</div></pre></td></tr></table></figure></p>
+<h4 id="10-3-还有可能就是注释引起的"><a href="#10-3-还有可能就是注释引起的" class="headerlink" title="10.3 还有可能就是注释引起的"></a>10.3 还有可能就是注释引起的</h4></the>
       
 
       
@@ -357,8 +357,8 @@
     </a>
   
   
-    <a href="/2017/06/25/FrontColdKnowledge/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端冷知识</div>
+    <a href="/2017/06/25/zTree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zTree记录</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -385,7 +385,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-IE浏览器文件上传返回的json会提示你下载"><span class="toc-number">1.</span> <span class="toc-text">1.IE浏览器文件上传返回的json会提示你下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-360安全浏览器在默认安装打开情况下使用IE7的文档模式导致页面布局乱套问题"><span class="toc-number">2.</span> <span class="toc-text">2. 360安全浏览器在默认安装打开情况下使用IE7的文档模式导致页面布局乱套问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-问题描述"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2解决"><span class="toc-number">2.2.</span> <span class="toc-text">2.2解决</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3知识补充"><span class="toc-number">2.3.</span> <span class="toc-text">2.3知识补充</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-toFixed在保留小数的同时将类型也变了"><span class="toc-number">3.</span> <span class="toc-text">3.toFixed在保留小数的同时将类型也变了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-模拟点击a标签触发页面跳转"><span class="toc-number">4.</span> <span class="toc-text">4.模拟点击a标签触发页面跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-png图片在Chrome、IE、Firefox、ps中颜色不一致问题"><span class="toc-number">5.</span> <span class="toc-text">5.png图片在Chrome、IE、Firefox、ps中颜色不一致问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-同时使用hover和after-before伪类"><span class="toc-number">6.</span> <span class="toc-text">6.同时使用hover和after/before伪类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-关于点击按钮显示div-然后点击页面其他区域隐藏div的实现"><span class="toc-number">7.</span> <span class="toc-text">7.关于点击按钮显示div,然后点击页面其他区域隐藏div的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-meta-标签"><span class="toc-number">8.</span> <span class="toc-text">8.meta 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1"><span class="toc-number">8.1.</span> <span class="toc-text">8.1</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-jQuery-1-9-最后支持-IE-6-7-8-的版本"><span class="toc-number">9.</span> <span class="toc-text">9. jQuery 1.9 最后支持 IE 6/7/8 的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-IE8-缺少标识符、字符串或数字"><span class="toc-number">10.</span> <span class="toc-text">10.IE8 缺少标识符、字符串或数字</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-IE浏览器文件上传返回的json会提示你下载"><span class="toc-number">1.</span> <span class="toc-text">1.IE浏览器文件上传返回的json会提示你下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-360安全浏览器在默认安装打开情况下使用IE7的文档模式导致页面布局乱套问题"><span class="toc-number">2.</span> <span class="toc-text">2. 360安全浏览器在默认安装打开情况下使用IE7的文档模式导致页面布局乱套问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-问题描述"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 问题描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2解决"><span class="toc-number">2.2.</span> <span class="toc-text">2.2解决</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3知识补充"><span class="toc-number">2.3.</span> <span class="toc-text">2.3知识补充</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-toFixed在保留小数的同时将类型也变了"><span class="toc-number">3.</span> <span class="toc-text">3.toFixed在保留小数的同时将类型也变了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-模拟点击a标签触发页面跳转"><span class="toc-number">4.</span> <span class="toc-text">4.模拟点击a标签触发页面跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-png图片在Chrome、IE、Firefox、ps中颜色不一致问题"><span class="toc-number">5.</span> <span class="toc-text">5.png图片在Chrome、IE、Firefox、ps中颜色不一致问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-同时使用hover和after-before伪类"><span class="toc-number">6.</span> <span class="toc-text">6.同时使用hover和after/before伪类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-关于点击按钮显示div-然后点击页面其他区域隐藏div的实现"><span class="toc-number">7.</span> <span class="toc-text">7.关于点击按钮显示div,然后点击页面其他区域隐藏div的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-meta-标签"><span class="toc-number">8.</span> <span class="toc-text">8.meta 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1"><span class="toc-number">8.1.</span> <span class="toc-text">8.1</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-jQuery-1-9-最后支持-IE-6-7-8-的版本"><span class="toc-number">9.</span> <span class="toc-text">9. jQuery 1.9 最后支持 IE 6/7/8 的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-IE8-缺少标识符、字符串或数字、高版本直接报80020101"><span class="toc-number">10.</span> <span class="toc-text">10.IE8 缺少标识符、字符串或数字、高版本直接报80020101</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-1-IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028-缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如："><span class="toc-number">10.1.</span> <span class="toc-text">10.1 IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028: 缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-IE8及以下浏览器，不能用const作为json的key"><span class="toc-number">10.2.</span> <span class="toc-text">10.2 IE8及以下浏览器，不能用const作为json的key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-还有可能就是注释引起的"><span class="toc-number">10.3.</span> <span class="toc-text">10.3 还有可能就是注释引起的</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -519,6 +519,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">bug记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -527,7 +535,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color4">cmd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,14 +551,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">bug记录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cmd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
@@ -560,10 +560,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">软件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,6 +576,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">冷知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">软件</a>
               </li>
              
               <li class="article-tag-list-item">
